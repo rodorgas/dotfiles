@@ -23,6 +23,8 @@ nnoremap <Leader>q :q<CR>
 nnoremap tt :tabnew<CR>
 imap <C-e> <C-y>, 
 nnoremap <Leader>w :w<CR>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$']
@@ -138,3 +140,7 @@ map <Left> <c-w>h
 map <Up> <c-w>k
 map <Right> <c-w>l
 map <Down> <c-w>j
+
+" enable system clipboard for, er, system clipboard registers
+" https://github.com/neovim/neovim/issues/583#issuecomment-272350992
+set mouse=
