@@ -8,3 +8,10 @@ export PATH=$PATH:$HOME/bin
 ####
 alias profile-github='git config user.name "Rodrigo Orem";git config user.email orem.rodrigo@gmail.com'
 alias profile-gitlab='git config user.name "Rodrigo Orem";git config user.email rodrigo@prazocerto.com.br'
+
+# set window title to ssh host
+ssh() {
+    tmux rename-window "$*"
+    command ssh "$@"
+    exit
+}
