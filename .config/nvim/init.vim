@@ -1,4 +1,7 @@
 source ~/.config/nvim/plugins.vim
+:if !empty(glob("~/.config/nvim/local.vim"))
+:  source ~/.config/nvim/local.vim
+:endif
 
 " Appearance
 " set termguicolors
