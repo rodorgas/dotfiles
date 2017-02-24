@@ -147,3 +147,6 @@ map <Down> <c-w>j
 " enable system clipboard for, er, system clipboard registers
 " https://github.com/neovim/neovim/issues/583#issuecomment-272350992
 set mouse=
+
+:set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+:set list

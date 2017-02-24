@@ -15,3 +15,5 @@ alias profile-gitlab='git config user.name "Rodrigo Orem";git config user.email 
 #     command ssh "$@"
 #     exit
 # }
+#
+alias vim=nvim
