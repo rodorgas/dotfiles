@@ -44,14 +44,13 @@ let g:fzf_layout = { 'down': '~25%' }
 
 if isdirectory(".git")
     " if in a git project, use :GFiles
-    nmap <silent> <Leader>t :GFiles<cr>
+    nmap <silent> <Leader>p :GFiles<cr>
 else
     " otherwise, use :FZF
-    nmap <silent> <Leader>t :FZF<cr>
+    nmap <silent> <Leader>p :FZF<cr>
 endif
 
 nmap <silent> <Leader>b :Buffers<cr>
-nmap <silent> <Leader>p :FZF<cr>
 nmap <Leader><tab> <plug>(fzf-maps-n)
 xmap <Leader><tab> <plug>(fzf-maps-x)
 omap <Leader><tab> <plug>(fzf-maps-o)
@@ -61,6 +60,10 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Tags
+nmap <silent> <Leader>r :CtrlPBufTag<cr>
+nmap <silent> <Leader>e :TagbarToggle<cr>
 
 nnoremap <silent> <Leader>C :call fzf#run({
 \   'source':
@@ -146,7 +149,7 @@ map <Down> <c-w>j
 
 " enable system clipboard for, er, system clipboard registers
 " https://github.com/neovim/neovim/issues/583#issuecomment-272350992
-set mouse=
+set mouse=a
 
 :set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :set list
