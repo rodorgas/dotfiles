@@ -89,10 +89,8 @@ nmap <leader>m :MarkedOpen!<cr>
 nmap <leader>mq :MarkedQuit<cr>
 nmap <leader>* *<c-o>:%s///gn<cr>
 
-let g:neomake_javascript_jshint_maker = {
-    \ 'args': ['--verbose'],
-    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-\ }
+" Syntax and lint
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 let g:neomake_typescript_tsc_maker = {
     \ 'args': ['-m', 'commonjs', '--noEmit' ],
@@ -103,6 +101,12 @@ let g:neomake_typescript_tsc_maker = {
         \ '%Eerror %m,' .
         \ '%C%\s%\+%m'
 \ }
+
+let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
+let g:neomake_python_pycodestyle_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
+
+" Run Neomake on save
+autocmd BufWritePost,BufEnter * Neomake
 
 " airline options
 let g:airline_powerline_fonts=1
@@ -146,7 +150,10 @@ map <Down> <c-w>j
 
 " enable system clipboard for, er, system clipboard registers
 " https://github.com/neovim/neovim/issues/583#issuecomment-272350992
-set mouse=
+set mouse=a
 
 :set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :set list
+
+nnoremap <C-k> gt
+nnoremap <C-j> gT

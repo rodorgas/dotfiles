@@ -25,6 +25,7 @@ Plug 'benmills/vimux' " tmux integration for vim
 Plug 'vim-airline/vim-airline' " fancy statusline
 Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
 Plug 'neomake/neomake' " neovim replacement for syntastic using neovim's job control functonality
+Plug 'benjie/neomake-local-eslint.vim' "Prefer local repo install of eslint over global install
 Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
 Plug 'tpope/vim-repeat' " enables repeating other supported plugins with the . command
 Plug 'garbas/vim-snipmate' " snippet manager
@@ -43,7 +44,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
 Plug 'tell-k/vim-autopep8'
 Plug 'Chiel92/vim-autoformat'
 
@@ -70,6 +70,7 @@ Plug 'elzr/vim-json', { 'for': 'json' } " JSON support
 Plug 'Shougo/vimproc.vim', { 'do': 'make' } " interactive command execution in vim
 Plug 'fatih/vim-go', { 'for': 'go' } " go support
 Plug 'timcharper/textile.vim', { 'for': 'textile' } " textile support
+Plug 'kchmck/vim-coffee-script' " CoffeeScript
 
 " Initialize plugin system
 call plug#end()
