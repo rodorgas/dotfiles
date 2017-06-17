@@ -17,3 +17,4 @@ alias profile-gitlab='git config user.name "Rodrigo Orem";git config user.email 
 # }
 #
 alias vim=nvim
+export EDITOR="nvim"

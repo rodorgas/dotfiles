@@ -1,3 +1,10 @@
+" Install vim-plug if not present
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo  ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -46,6 +53,9 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tell-k/vim-autopep8'
 Plug 'Chiel92/vim-autoformat'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'szw/vim-tags'
+Plug 'majutsushi/tagbar'
 
 " JavaScript
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' } " JavaScript indent support
@@ -71,6 +81,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' } " interactive command execution in v
 Plug 'fatih/vim-go', { 'for': 'go' } " go support
 Plug 'timcharper/textile.vim', { 'for': 'textile' } " textile support
 Plug 'kchmck/vim-coffee-script' " CoffeeScript
+Plug 'davidhalter/jedi-vim'  "Using the jedi autocompletion library for VIM.
 
 " Initialize plugin system
 call plug#end()
