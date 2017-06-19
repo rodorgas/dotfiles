@@ -151,5 +151,15 @@ map <Down> <c-w>j
 " https://github.com/neovim/neovim/issues/583#issuecomment-272350992
 set mouse=a
 
+" show whitespace
 :set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :set list
+
+" darker bg better contrast
+hi Normal ctermbg=none
+
+" ctrl+k ctrl+j switch tabs
+map <c-k> gt
+map <c-j> gT
+
+:set colorcolumn=80,119
