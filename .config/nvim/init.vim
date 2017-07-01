@@ -105,8 +105,9 @@ let g:neomake_typescript_tsc_maker = {
         \ '%C%\s%\+%m'
 \ }
 
-let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
-let g:neomake_python_pycodestyle_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
+let g:neomake_python_enabled_makers = ['flake8']
+"let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
+"let g:neomake_python_ycodestyle_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
 
 " Run Neomake on save
 autocmd BufWritePost,BufEnter * Neomake
@@ -160,3 +161,5 @@ set mouse=a
 
 nnoremap <C-k> gt
 nnoremap <C-j> gT
+
+:set cc=80,100
