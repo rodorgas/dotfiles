@@ -4,12 +4,11 @@ source ~/.config/nvim/plugins.vim
 :endif
 
 " Appearance
-" set termguicolors
-"colorscheme NeoSolarized
-let g:airline_theme='onedark'
+set termguicolors
 let g:solarized_termcolors=256
 set background=dark
 colorscheme onedark
+let g:airline_theme='aurora'
 
 
 " Settings
@@ -24,10 +23,11 @@ set autoread
 let mapleader = " "
 nnoremap <Leader>q :q<CR>
 nnoremap tt :tabnew<CR>
-imap <C-e> <C-y>, 
+"imap <C-e> <C-y>,   " emmet shortcut
 nnoremap <Leader>w :w<CR>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+nnoremap <Leader>l :VimuxRunLastCommand<CR>
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$']
@@ -81,42 +81,34 @@ command! FZFMru call fzf#run({
 \  'down':    '40%'})
 
 
-" Fugitive Shortcuts
-"""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>gs :Gstatus<cr>
-nmap <leader>ge :Gedit<cr>
-nmap <silent><leader>gr :Gread<cr>
-nmap <silent><leader>gb :Gblame<cr>
-
-nmap <leader>m :MarkedOpen!<cr>
-nmap <leader>mq :MarkedQuit<cr>
-nmap <leader>* *<c-o>:%s///gn<cr>
-
 " Syntax and lint
 let g:neomake_javascript_enabled_makers = ['eslint']
 
-let g:neomake_typescript_tsc_maker = {
-    \ 'args': ['-m', 'commonjs', '--noEmit' ],
-    \ 'append_file': 0,
-    \ 'errorformat':
-        \ '%E%f %#(%l\,%c): error %m,' .
-        \ '%E%f %#(%l\,%c): %m,' .
-        \ '%Eerror %m,' .
-        \ '%C%\s%\+%m'
-\ }
+"let g:neomake_typescript_tsc_maker = {
+    "\ 'args': ['-m', 'commonjs', '--noEmit' ],
+    "\ 'append_file': 0,
+    "\ 'errorformat':
+        "\ '%E%f %#(%l\,%c): error %m,' .
+        "\ '%E%f %#(%l\,%c): %m,' .
+        "\ '%Eerror %m,' .
+        "\ '%C%\s%\+%m'
+"\ }
 
-let g:neomake_python_enabled_makers = ['flake8']
+"let g:neomake_python_enabled_makers = ['flake8']
 "let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
 "let g:neomake_python_ycodestyle_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
 
 " Run Neomake on save
 autocmd BufWritePost,BufEnter * Neomake
+" Show errors or warnings window (quickfix window)
+nmap <leader>i :lwindow<cr>
+
 
 " airline options
 let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='onedark'
+let g:airline_theme='aurora'
 let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
 let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
@@ -157,7 +149,8 @@ map <Down> <c-w>j
 set mouse=a
 
 " show whitespace
-:set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+":set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+:set listchars=tab:>·,trail:~,extends:>,precedes:<
 :set list
 
 " darker bg better contrast
@@ -167,4 +160,12 @@ hi Normal ctermbg=none
 map <c-k> gt
 map <c-j> gT
 
-:set colorcolumn=80,119
+:set colorcolumn=72,80,119
+
+let g:vimtex_latexmk_progname='nvr'
+let g:vimtex_view_method='skim'
+let g:vimtex_compiler_progname='nvr'
+
+:command Templatecpp :r ~/.config/nvim/templates/cpp | :norm ggdd4ji	
+
+nmap <leader>h :Prettier<cr>

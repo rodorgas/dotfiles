@@ -32,7 +32,7 @@ Plug 'benmills/vimux' " tmux integration for vim
 Plug 'vim-airline/vim-airline' " fancy statusline
 Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
 Plug 'neomake/neomake' " neovim replacement for syntastic using neovim's job control functonality
-Plug 'benjie/neomake-local-eslint.vim' "Prefer local repo install of eslint over global install
+"Plug 'benjie/neomake-local-eslint.vim' "Prefer local repo install of eslint over global install
 Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
 Plug 'tpope/vim-repeat' " enables repeating other supported plugins with the . command
 Plug 'garbas/vim-snipmate' " snippet manager
@@ -51,10 +51,9 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
-Plug 'tell-k/vim-autopep8'
-Plug 'Chiel92/vim-autoformat'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'szw/vim-tags'
+"Plug 'tell-k/vim-autopep8'
+"Plug 'Chiel92/vim-autoformat'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 
 " JavaScript
@@ -63,13 +62,14 @@ Plug 'moll/vim-node', { 'for': 'javascript' } " node support
 Plug 'othree/yajs.vim', { 'for': 'javascript' } " JavaScript syntax plugin
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' } " ES6 and beyond syntax
 Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] } " JSX support
+"Plug 'posva/vim-vue'
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' } " emmet support for vim - easily create markdup wth CSS-like syntax
-Plug 'gregsexton/MatchTag', { 'for': 'html' } " match tags in html, similar to paren support
+"Plug 'gregsexton/MatchTag', { 'for': 'html' } " match tags in html, similar to paren support
 Plug 'othree/html5.vim', { 'for': 'html' } " html5 support
 Plug 'mustache/vim-mustache-handlebars' " mustach support
-Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] } " jade support
+"Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] } " jade support
 
 " markdown
 Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' } " Open markdown files in Marked.app - mapped to <leader>m
@@ -81,7 +81,13 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' } " interactive command execution in v
 Plug 'fatih/vim-go', { 'for': 'go' } " go support
 Plug 'timcharper/textile.vim', { 'for': 'textile' } " textile support
 Plug 'kchmck/vim-coffee-script' " CoffeeScript
-Plug 'davidhalter/jedi-vim'  "Using the jedi autocompletion library for VIM.
+Plug 'davidhalter/jedi-vim'  "Using the jedi autocompletion library for VIM (python)
+Plug 'lervag/vimtex'
+
+" Linters
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'Chiel92/vim-autoformat'  "Beautifier Prettifier - run :Autoformat <language>
+
 
 " Initialize plugin system
 call plug#end()
