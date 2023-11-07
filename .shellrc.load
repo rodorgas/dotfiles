@@ -6,7 +6,7 @@ export PATH=$PATH:$HOME/bin
 # . $HOME/.shellrc.load
 
 ####
-alias git-profile-github='git config user.name "Rodrigo O";git config user.email rodorgas@users.noreply.github.com'
+alias git-profile-github='git config user.name "Rodrigo Orem";git config user.email 8618619+rodorgas@users.noreply.github.com'
 alias git-profile-gitlab-arm='git config user.name "Rodrigo Orem";git config user.email rodrigo@prazocerto.com.br'
 
 # set window title to ssh host
