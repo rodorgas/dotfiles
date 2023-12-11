@@ -11,5 +11,6 @@
       }
     }
   },
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  "rust-analyzer.server.path": "rust-analyzer.server.path"
 }

@@ -120,3 +120,4 @@ _fzf_comprun() {
     *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }
+export PATH="$(yarn global bin):$PATH"

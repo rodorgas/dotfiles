@@ -16,7 +16,7 @@ colorscheme onedark
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 set tabstop=4 shiftwidth=2 expandtab
 set number
-set relativenumber
+"set relativenumber
 set showcmd
 set autoread
 
