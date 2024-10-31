@@ -5,7 +5,7 @@ source ~/.config/nvim/plugins.vim
 
 " Appearance
 set termguicolors
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 "set background=light
 "colorscheme atom
 colorscheme onedark
@@ -53,7 +53,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Tags
 "nmap <silent> <Leader>t :CtrlPBufTag<cr>
 nmap <silent> <Leader>t :Windows<cr>
-nmap <silent> <Leader>e :Vista!!<cr>
 
 nnoremap <silent> <Leader>C :call fzf#run({
 \   'source':
@@ -69,37 +68,6 @@ command! FZFMru call fzf#run({
 \  'sink':    'e',
 \  'options': '-m -x +s',
 \  'down':    '40%'})
-
-" Syntax and lint
-let g:neomake_javascript_enabled_makers = ['eslint']
-
-"let g:neomake_typescript_tsc_maker = {
-    "\ 'args': ['-m', 'commonjs', '--noEmit' ],
-    "\ 'append_file': 0,
-    "\ 'errorformat':
-        "\ '%E%f %#(%l\,%c): error %m,' .
-        "\ '%E%f %#(%l\,%c): %m,' .
-        "\ '%Eerror %m,' .
-        "\ '%C%\s%\+%m'
-"\ }
-
-"let g:neomake_python_enabled_makers = ['pylint']
-"let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
-"let g:neomake_python_ycodestyle_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
-" c support
-let g:neomake_c_enabled_makers = ["gcc"]
-let g:neomake_c_gcc_makers = {
-    \ 'args': ['-std=c99', 'Wall'],
-    \ }
-
-" Run Neomake on save
-"autocmd BufWritePost,BufEnter * Neomake
-
-" Show errors or warnings window (quickfix window)
-nmap <leader>i :lwindow<cr>
-nmap <leader>n :lnext<cr>
-nmap <leader>N :lprev<cr>
-
 
 " airline options
 let g:airline_powerline_fonts = 1
@@ -141,7 +109,7 @@ map <Down> <c-w>j
 set mouse=a
 
 " show whitespace
-":set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+:set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 :set listchars=trail:~,extends:>,precedes:<
 ":set list
 
@@ -208,6 +176,12 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Show errors or warnings window (quickfix window)
+"nmap <leader>i :CocDiagnostics<cr>
+nmap <leader>n :CocNext<cr>
+nmap <leader>N :CocPrev<cr>
+nmap <silent> <leader>i :CocList diagnostics<CR>
+
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -220,7 +194,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -244,7 +218,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " coc extensions
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-rust-analyzer']
 
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 
@@ -262,25 +236,10 @@ function WordCount()
   let v:statusmsg = s:old_status
   return s:word_count
 endfunction
-:set statusline=wc:%{WordCount()}
+":set statusline=wc:%{WordCount()}
 
 
 autocmd FileType python let b:coc_root_patterns = ['.ccls']
-
-
-
-
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-set statusline+=%{NearestMethodOrFunction()}
-
-" By default vista.vim never run if you don't call it explicitly.
-"
-" If you want to show the nearest function in your statusline automatically,
-" you can add the following line to your vimrc
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>p :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
@@ -289,47 +248,47 @@ nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
-" How each level is indented and what to prepend.
-" This could make the display more compact or more spacious.
-" e.g., more compact: ["▸ ", ""]
-" Note: this option only works for the kind renderer, not the tree renderer.
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-" Executive used when opening vista sidebar without specifying it.
-" See all the avaliable executives via `:echo g:vista#executives`.
-let g:vista_default_executive = 'coc'
-
-" Set the executive for some filetypes explicitly. Use the explicit executive
-" instead of the default one for these filetypes when using `:Vista` without
-" specifying the executive.
-let g:vista_executive_for = {
-  \ 'ts': 'coc',
-  \ 'php': 'vim_lsp',
-  \ }
-
-" Declare the command including the executable and options used to generate ctags output
-" for some certain filetypes.The file path will be appened to your custom command.
-" For example:
-let g:vista_ctags_cmd = {
-      \ 'haskell': 'hasktags -x -o - -c',
-      \ }
-
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-" For example:
-let g:vista_fzf_preview = ['right:50%']
-
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-let g:vista#renderer#enable_icon = 1
-
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
-
-let g:vista#executives = ['coc', 'ctags', 'lcn', 'nvim_lsp', 'vim_lsc', 'vim_lsp']
-
 nnoremap <leader>c :Format<CR>
 
 nmap <leader>rn <Plug>(coc-rename)
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+autocmd User CocStatusChange redraws
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
+
+let g:ledger_bin = 'ledger'
+
+command! TwoColumns
+        \   exe "normal zR"
+        \ | set noscrollbind
+        \ | vsplit
+        \ | set scrollbind
+        \ | wincmd w
+        \ | exe "normal \<c-f>"
+        \ | set scrollbind
+        \ | wincmd p
+
+function! s:Camelize(range) abort
+  if a:range == 0
+    s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g
+  else
+    s#\%V\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)\%V#\u\1\2#g
+  endif
+endfunction
+
+function! s:Snakeize(range) abort
+  if a:range == 0
+    s#\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)#\l\1_\l\2#g
+  else
+    s#\%V\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)\%V#\l\1_\l\2#g
+  endif
+endfunction
+
+command! -range CamelCase silent! call <SID>Camelize(<range>)
+command! -range SnakeCase silent! call <SID>Snakeize(<range>)

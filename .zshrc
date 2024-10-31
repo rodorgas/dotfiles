@@ -121,3 +121,14 @@ _fzf_comprun() {
   esac
 }
 export PATH="$(yarn global bin):$PATH"
+export PATH="~/.bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/rodrigo/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"

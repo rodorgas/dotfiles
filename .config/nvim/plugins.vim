@@ -43,20 +43,19 @@ Plug 'lervag/vimtex'
 Plug 'Vimjas/vim-python-pep8-indent'
 
 " Linters
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 Plug 'Chiel92/vim-autoformat'  "Beautifier Prettifier - run :Autoformat <language>
 
 "" snippets
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "" Syntax highlight
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
-
-""" Tagbar replacement for LSP
-Plug 'liuchengxu/vista.vim'
 
 """ Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -71,5 +70,19 @@ Plug 'nvim-telescope/telescope-frecency.nvim'
 " GraphQL
 Plug 'jparise/vim-graphql'
 
-"" Initialize plugin system
+" Copilot
+Plug 'github/copilot.vim'
+
+" Git blame
+Plug 'FabijanZulj/blame.nvim'
+
+" Better syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Refactoring
+Plug 'ThePrimeagen/refactoring.nvim'
+
+Plug 'ledger/vim-ledger'
+
+" Initialize plugin system
 call plug#end()
